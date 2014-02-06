@@ -48,7 +48,12 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       game.roll(8);
       game.roll(1)
       expect(rollMany(0, 16).score()).toBe(11);
-
+    });
+    it('when a strike is rolled the next two balls should counted as a bonus', function() {
+      game.roll(10);
+      game.roll(2);
+      game.roll(4);
+      expect(rollMany(0, 16).score()).toBe(22);
     });
   });
 }());
