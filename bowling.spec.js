@@ -39,8 +39,16 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
     it('when a spare is rolled the next ball should counted as a bonus', function() {
       game.roll(8);
       game.roll(2);
-      game.roll(4);
-      expect(rollMany(0, 17).score()).toBe(18);
+      game.roll(8);
+      expect(rollMany(0, 17).score()).toBe(26);
+    });
+    it('two consecutive rolls that add up to 10 are not always a spare', function() {
+      game.roll(0);
+      game.roll(2);
+      game.roll(8);
+      game.roll(1)
+      expect(rollMany(0, 16).score()).toBe(11);
+
     });
   });
 }());
