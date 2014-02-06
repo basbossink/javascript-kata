@@ -18,26 +18,34 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
   exports.newGame = function() {
     var rolls = [];
+    var sumConsecutiveBalls = function(index) {
+      return rolls[index] + rolls[index+1];
+    }
+    var isStrike = function(index) {
+      return rolls[index] == 10;
+    }
+    var isSpare = function(index) {
+      return sumConsecutiveBalls(index) == 10;
+    }
+    var scoreNonStrike = function(rollIndex) {
+      return isSpare(rollIndex) ? 
+        10 + rolls[rollIndex+2] : 
+        sumConsecutiveBalls(rollIndex);
+    };
+    var scoreFrame = function(rollIndex) {
+      return isStrike(rollIndex) ?
+        10 + sumConsecutiveBalls(rollIndex+1) :
+        scoreNonStrike(rollIndex);
+    }
     return {
       roll: function(pins) {
         rolls.push(pins);
       },
       score: function() {
-        var frame; 
-        var score = 0;
-        var rollIndex = 0;
-        for(frame=0; frame < 10; frame++) {
-          if(rolls[rollIndex] == 10) {
-            score += 10 + rolls[rollIndex+1] + rolls[rollIndex+2];
-            rollIndex++;
-          }
-          else if(rolls[rollIndex] + rolls[rollIndex+1] == 10) {
-            score += 10 + rolls[rollIndex+2];
-            rollIndex += 2;
-          } else {
-            score += rolls[rollIndex] + rolls[rollIndex+1];
-            rollIndex += 2;
-          }
+        var frame = 0, score = 0, rollIndex = 0;
+        for(; frame < 10; frame++) {
+          score += scoreFrame(rollIndex);
+          rollIndex += isStrike(rollIndex) ? 1 : 2;
         }
         return score;
       }
