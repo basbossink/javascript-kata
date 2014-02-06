@@ -25,17 +25,16 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       for(; i < numberOfTimes; i++) {
         game.roll(pins); 
       }
+      return game;
     }
     beforeEach(function() {
       game = newGame();
     })
     it('a gutter game should score zero', function() {
-      rollMany(0,20);
-      expect(game.score()).toBe(0);
+      expect(rollMany(0,20).score()).toBe(0);
     });
     it('a game with only ones should score 20', function() {
-      rollMany(1, 20)
-      expect(game.score()).toBe(20);
+      expect(rollMany(1, 20).score()).toBe(20);
     });
   });
 }());
