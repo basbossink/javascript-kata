@@ -22,6 +22,9 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
     var sumConsecutiveRolls = function(rollIndex) {
       return rolls[rollIndex] + rolls[rollIndex+1];
     }
+    var isSpare = function(rollIndex) {
+      return sumConsecutiveRolls(rollIndex) == 10;
+    }
     return {
       roll: function(pins) {
         rolls.push(pins);
@@ -29,7 +32,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       score: function() { 
         var score = 0, rollIndex = 0, frame = 0;
         for(; frame < 10; frame++) {
-          if(sumConsecutiveRolls(rollIndex) == 10) {
+          if(isSpare(rollIndex)) {
             score += 10 + rolls[rollIndex+2];
           }
           else {
