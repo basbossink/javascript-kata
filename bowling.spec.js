@@ -19,17 +19,17 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
 
   var newGame = require('./bowling').newGame;
   describe('When calculating the score of a bowling game;', function() {
-    var game;
-    var rollMany = function(pins, numberOfTimes) {
+    var game,
+    rollMany = function(pins, numberOfTimes) {
       var i = 0;
-      for(; i < numberOfTimes; i++) {
-        game.roll(pins); 
+      for(; i < numberOfTimes; i += 1) {
+        game.roll(pins);
       }
       return game;
-    }
+    };
     beforeEach(function() {
       game = newGame();
-    })
+    });
     it('a gutter game should score zero', function() {
       expect(rollMany(0,20).score()).toBe(0);
     });
@@ -46,7 +46,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       game.roll(0);
       game.roll(2);
       game.roll(8);
-      game.roll(1)
+      game.roll(1);
       expect(rollMany(0, 16).score()).toBe(11);
     });
     it('when a strike is rolled the next two balls should counted as a bonus', function() {

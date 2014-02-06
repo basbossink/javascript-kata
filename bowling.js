@@ -18,17 +18,17 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
 
   exports.newGame = function() {
-    var rolls = [];
-    var sumConsecutiveRolls = function(rollIndex) {
+    var rolls = [],
+    sumConsecutiveRolls = function(rollIndex) {
       return rolls[rollIndex] + rolls[rollIndex + 1];
-    };
-    var isSpare = function(rollIndex) {
-      return sumConsecutiveRolls(rollIndex) == 10;
-    };
-    var isStrike = function(rollIndex) {
-      return rolls[rollIndex] == 10;
-    };
-    var frameScore = function(rollIndex) {
+    },
+    isSpare = function(rollIndex) {
+      return sumConsecutiveRolls(rollIndex) === 10;
+    },
+    isStrike = function(rollIndex) {
+      return rolls[rollIndex] === 10;
+    },
+    frameScore = function(rollIndex) {
       return isStrike(rollIndex) ?
         10 + sumConsecutiveRolls(rollIndex + 1) :
         isSpare(rollIndex) ?
@@ -39,9 +39,9 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       roll: function(pins) {
         rolls.push(pins);
       },
-      score: function() { 
+      score: function() {
         var score = 0, rollIndex = 0, frame = 0;
-        for(; frame < 10; frame++) {
+        for(; frame < 10; frame += 1) {
           score += frameScore(rollIndex);
           rollIndex += isStrike(rollIndex) ? 1 : 2;
         }
