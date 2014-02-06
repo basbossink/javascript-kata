@@ -27,5 +27,13 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       }
       expect(game.score()).toBe(0);
     });
+    it('a game with only ones should score 20', function() {
+      var game = newGame();
+      var i = 0;
+      for(; i < 20; i++) {
+        game.roll(1); 
+      }
+      expect(game.score()).toBe(20);
+    });
   });
 }());
