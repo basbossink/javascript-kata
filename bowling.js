@@ -37,14 +37,13 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
         for(; frame < 10; frame++) {
           if(isStrike(rollIndex)) {
             score += 10 + sumConsecutiveRolls(rollIndex+1);
-            rollIndex++;
           }
           else {
             score += isSpare(rollIndex) ?
               10 + rolls[rollIndex+2] :
               sumConsecutiveRolls(rollIndex);
-            rollIndex += 2;
           }
+          rollIndex += isStrike(rollIndex) ? 1 : 2;
         }
         return score;
       }
