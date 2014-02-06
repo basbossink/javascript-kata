@@ -18,8 +18,14 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
 
   var newGame = require('./bowling').newGame;
-  describe('', function() {
-    it('', function() {
+  describe('When calculating the score of a bowling game;', function() {
+    it('a gutter game should score zero', function() {
+      var game = newGame();
+      var i = 0;
+      for(; i < 20; i++) {
+        game.roll(0); 
+      }
+      expect(game.score()).toBe(0);
     });
   });
 }());
