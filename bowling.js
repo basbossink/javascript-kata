@@ -21,25 +21,20 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
     var rolls = [];
     var sumConsecutiveRolls = function(rollIndex) {
       return rolls[rollIndex] + rolls[rollIndex+1];
-    }
+    };
     var isSpare = function(rollIndex) {
       return sumConsecutiveRolls(rollIndex) == 10;
-    }
+    };
     var isStrike = function(rollIndex) {
       return rolls[rollIndex] == 10;
-    }
+    };
     var frameScore = function(rollIndex) {
-      var score = 0;
-      if(isStrike(rollIndex)) {
-        score = 10 + sumConsecutiveRolls(rollIndex+1);
-      }
-      else {
-        score = isSpare(rollIndex) ?
+      return isStrike(rollIndex) ?
+        10 + sumConsecutiveRolls(rollIndex +1) :
+        isSpare(rollIndex) ?
           10 + rolls[rollIndex+2] :
           sumConsecutiveRolls(rollIndex);
-      }
-      return score;
-    }
+    };
     return {
       roll: function(pins) {
         rolls.push(pins);
