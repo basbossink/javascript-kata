@@ -20,7 +20,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   exports.newGame = function() {
     var rolls = [];
     var sumConsecutiveRolls = function(rollIndex) {
-      return rolls[rollIndex] + rolls[rollIndex+1];
+      return rolls[rollIndex] + rolls[rollIndex + 1];
     };
     var isSpare = function(rollIndex) {
       return sumConsecutiveRolls(rollIndex) == 10;
@@ -30,9 +30,9 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
     };
     var frameScore = function(rollIndex) {
       return isStrike(rollIndex) ?
-        10 + sumConsecutiveRolls(rollIndex +1) :
+        10 + sumConsecutiveRolls(rollIndex + 1) :
         isSpare(rollIndex) ?
-          10 + rolls[rollIndex+2] :
+          10 + rolls[rollIndex + 2] :
           sumConsecutiveRolls(rollIndex);
     };
     return {
