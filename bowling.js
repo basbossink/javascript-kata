@@ -24,14 +24,15 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
         rolls.push(pins);
       },
       score: function() { 
-        var score = 0, rollIndex = 0;
-        for(; rollIndex < 20; rollIndex++) {
+        var score = 0, rollIndex = 0, frame = 0;
+        for(; frame < 10; frame++) {
           if(rolls[rollIndex] + rolls[rollIndex+1] == 10) {
             score += 10 + rolls[rollIndex+2];
-            rollIndex++;
+            rollIndex += 2;
           }
           else {
-            score += rolls[rollIndex];
+            score += rolls[rollIndex] + rolls[rollIndex+1];
+            rollIndex += 2;
           }
         }
         return score;
