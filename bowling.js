@@ -17,7 +17,8 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
 (function() {
   'use strict';
 
-  exports. = function() {
+  exports.newGame = function() {
 
+    return {};
   };
 }());
