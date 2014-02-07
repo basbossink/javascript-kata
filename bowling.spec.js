@@ -20,14 +20,14 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   var newGame = require('./bowling').newGame;
   describe('When calculating the score for a game of bowling', function() {
     it('a gutter game should score zero', function() {
-      var game = newGame(), i;
+      var game = newGame(), i = 0;
       for(; i < 20; i += 1) {
         game.roll(0);
       }
       expect(game.score()).toBe(0);
     });
     it('a game of ones should score twenty', function() {
-      var game = newGame(), i;
+      var game = newGame(), i = 0;
       for(; i < 20; i += 1) {
         game.roll(1);
       }
