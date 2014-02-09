@@ -56,5 +56,9 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       rollMany(0, 16);
       expect(game.score()).toBe(22);
     });
+    it('a perfect game of should score three hundred', function() {
+      rollMany(10, 12);
+      expect(game.score()).toBe(300);
+    });
   });
 }());
