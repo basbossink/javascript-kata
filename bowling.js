@@ -46,7 +46,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
           frame = 0;
         for(; frame < 10; frame += 1) {
           score += frameScore(rollIndex);
-          rollIndex += rolls[rollIndex] === 10 ? 1 : 2;
+          rollIndex += isStrike(rollIndex) ? 1 : 2;
         }
         return score;
       }
