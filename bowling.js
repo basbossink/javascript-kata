@@ -29,16 +29,11 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
         return rolls[rollIndex] + rolls[rollIndex + 1];
       },
       frameScore = function(rollIndex) {
-        var score = 0;
-        if(isStrike(rollIndex)) {
-          score = 10 + sumConsecutiveBals(rollIndex + 1);
-        } else {
-          if(isSpare(rollIndex)) {
-            score = 10 + rolls[rollIndex + 2];
-          } else {
-            score = sumConsecutiveBals(rollIndex);
-          }
-        }
+        var score = isStrike(rollIndex) ?
+          10 + sumConsecutiveBals(rollIndex + 1) :
+          isSpare(rollIndex) ?
+            10 + rolls[rollIndex + 2] :
+            sumConsecutiveBals(rollIndex);
         return score;
       };
     return {
