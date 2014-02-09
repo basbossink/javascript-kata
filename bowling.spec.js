@@ -43,7 +43,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       rollMany(0, 17);
       expect(game.score()).toBe(22);
     });
-    it('two consecutive balls that sum to ten are not always a spare', function() {
+    xit('two consecutive balls that sum to ten are not always a spare', function() {
       game.roll(0);
       game.roll(4);
       rollMany(6, 2);
