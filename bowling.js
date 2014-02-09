@@ -31,12 +31,16 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
           rollIndex = 0,
           frame = 0;
         for(; frame < 10; frame += 1) {
-          if(isSpare(rollIndex)) {
-            score += 10 + rolls[rollIndex + 2];
+          if(rolls[rollIndex] === 10) {
+            score += 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2];
           } else {
-            score += rolls[rollIndex] + rolls[rollIndex + 1];
+            if(isSpare(rollIndex)) {
+              score += 10 + rolls[rollIndex + 2];
+            } else {
+              score += rolls[rollIndex] + rolls[rollIndex + 1];
+            }
           }
-          rollIndex += 2;
+          rollIndex += rolls[rollIndex] === 10 ? 1 : 2;
         }
         return score;
       }
