@@ -18,7 +18,13 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
 
   exports.newGame = function() {
-    var rolls = [];
+    var rolls = [],
+      sumConsecutiveBalls = function(rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1];
+      },
+      isSpare = function(rollIndex) {
+        return sumConsecutiveBalls(rollIndex) === 10;
+      };
     return {
       roll: function(pins) {
         rolls.push(pins);
@@ -26,10 +32,10 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       score: function() {
         var score = 0, rollIndex = 0, frame = 0;
         for(; frame < 10; frame += 1) {
-          if(rolls[rollIndex] + rolls[rollIndex + 1] === 10) {
+          if(isSpare(rollIndex)) {
             score += 10 + rolls[rollIndex + 2];
           } else {
-            score += rolls[rollIndex] + rolls[rollIndex + 1];
+            score += sumConsecutiveBalls(rollIndex);
           }
           rollIndex += 2;
         }
