@@ -18,9 +18,10 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
 
   exports.newGame = function() {
+    var score = 0;
     return {
-      roll: function() {},
-      score: function() { return 0; }
+      roll: function(pins) { score += pins; },
+      score: function() { return score; }
     };
   };
 }());
