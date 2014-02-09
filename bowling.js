@@ -32,12 +32,20 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       score: function() {
         var score = 0, rollIndex = 0, frame = 0;
         for(; frame < 10; frame += 1) {
-          if(isSpare(rollIndex)) {
-            score += 10 + rolls[rollIndex + 2];
+          if(rolls[rollIndex] === 10) {
+            score += 10 + sumConsecutiveBalls(rollIndex + 1);
           } else {
-            score += sumConsecutiveBalls(rollIndex);
+            if(isSpare(rollIndex)) {
+              score += 10 + rolls[rollIndex + 2];
+            } else {
+              score += sumConsecutiveBalls(rollIndex);
+            }
           }
-          rollIndex += 2;
+          if(rolls[rollIndex] === 10) {
+            rollIndex += 1;
+          } else {
+            rollIndex += 2;
+          }
         }
         return score;
       }

@@ -45,12 +45,19 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       expect(game.score()).toBe(16);
     });
     it('when two consecutive balls from a different frame sum to ten' +
-        'they should not be counted as a spare', function() {
+        ' they should not be counted as a spare', function() {
       game.roll(4);
       game.roll(3);
       game.roll(7);
       rollMany(0, 17);
       expect(game.score()).toBe(14);
+    });
+    it('when throwing a strike the next two balls should count as a bonus', function() {
+      game.roll(10);
+      game.roll(6);
+      game.roll(3);
+      rollMany(0, 16);
+      expect(game.score()).toBe(28);
     });
   });
 }());
