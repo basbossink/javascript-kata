@@ -17,7 +17,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
 (function() {
   'use strict';
 
-  var newGame = require('./').newGame;
+  var newGame = require('./bowling').newGame;
   describe('', function() {
     it('', function() {
     });
