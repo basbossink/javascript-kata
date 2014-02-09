@@ -27,6 +27,19 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       },
       sumConsecutiveBals = function(rollIndex) {
         return rolls[rollIndex] + rolls[rollIndex + 1];
+      },
+      frameScore = function(rollIndex) {
+        var score = 0;
+        if(isStrike(rollIndex)) {
+          score = 10 + sumConsecutiveBals(rollIndex + 1);
+        } else {
+          if(isSpare(rollIndex)) {
+            score = 10 + rolls[rollIndex + 2];
+          } else {
+            score = sumConsecutiveBals(rollIndex);
+          }
+        }
+        return score;
       };
     return {
       roll: function(pins) {
@@ -37,15 +50,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
           rollIndex = 0,
           frame = 0;
         for(; frame < 10; frame += 1) {
-          if(isStrike(rollIndex)) {
-            score += 10 + sumConsecutiveBals(rollIndex + 1);
-          } else {
-            if(isSpare(rollIndex)) {
-              score += 10 + rolls[rollIndex + 2];
-            } else {
-              score += sumConsecutiveBals(rollIndex);
-            }
-          }
+          score += frameScore(rollIndex);
           rollIndex += rolls[rollIndex] === 10 ? 1 : 2;
         }
         return score;
