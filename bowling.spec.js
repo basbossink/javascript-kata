@@ -37,7 +37,7 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       rollMany(1,20);
       expect(game.score()).toBe(20);
     });
-    it('a spare should add next ball as a bonus', function() {
+    xit('a spare should add next ball as a bonus', function() {
       game.roll(4);
       game.roll(6);
       game.roll(6);
