@@ -19,8 +19,14 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
 
   exports.newGame = function() {
     var rolls = [],
+      isStrike = function(rollIndex) {
+        return rolls[rollIndex] === 10;
+      },
       isSpare = function(rollIndex) {
         return rolls[rollIndex] + rolls[rollIndex + 1] === 10;
+      },
+      sumConsecutiveBals = function(rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1];
       };
     return {
       roll: function(pins) {
@@ -31,13 +37,13 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
           rollIndex = 0,
           frame = 0;
         for(; frame < 10; frame += 1) {
-          if(rolls[rollIndex] === 10) {
-            score += 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2];
+          if(isStrike(rollIndex)) {
+            score += 10 + sumConsecutiveBals(rollIndex + 1);
           } else {
             if(isSpare(rollIndex)) {
               score += 10 + rolls[rollIndex + 2];
             } else {
-              score += rolls[rollIndex] + rolls[rollIndex + 1];
+              score += sumConsecutiveBals(rollIndex);
             }
           }
           rollIndex += rolls[rollIndex] === 10 ? 1 : 2;
