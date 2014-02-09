@@ -18,13 +18,22 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
 
   exports.newGame = function() {
-    var totalScore = 0;
+    var rolls = [];
     return {
       roll: function(pins) {
-        totalScore += pins;
+        rolls.push(pins);
       },
       score: function() {
-        return totalScore;
+        var score = 0, rollIndex = 0;
+        for(; rollIndex < 20; rollIndex += 1) {
+          if(rolls[rollIndex] + rolls[rollIndex + 1] === 10) {
+            score += 10 + rolls[rollIndex + 2];
+            rollIndex += 1;
+          } else {
+            score += rolls[rollIndex];
+          }
+        }
+        return score;
       }
     };
   };
