@@ -30,18 +30,17 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       game = newGame();
     });
     it('a gutter game should score zero', function() {
-      rollMany(0,20);
+      rollMany(0, 20);
       expect(game.score()).toBe(0);
     });
     it('a game of ones should score twenty', function() {
-      rollMany(1,20);
+      rollMany(1, 20);
       expect(game.score()).toBe(20);
     });
     it('a spare should add next ball as a bonus', function() {
       game.roll(4);
-      game.roll(6);
-      game.roll(6);
-      rollMany(0,17);
+      rollMany(6, 2);
+      rollMany(0, 17);
       expect(game.score()).toBe(22);
     });
   });
