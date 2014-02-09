@@ -40,7 +40,9 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
         rolls.push(pins);
       },
       score: function() {
-        var score = 0, rollIndex = 0, frame = 0;
+        var score = 0,
+          rollIndex = 0,
+          frame = 0;
         for(; frame < 10; frame += 1) {
           score += frameScore(rollIndex);
           rollIndex += isStrike(rollIndex) ?  1 : 2;
