@@ -26,6 +26,10 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       score: function() {
         var score = 0, rollIndex = 0;
         for(; rollIndex < 20; rollIndex += 1) {
+          if(rolls[rollIndex] + rolls[rollIndex + 1] === 10) {
+            score += 10 + rolls[rollIndex + 2];
+            rollIndex += 2;
+          }
           score += rolls[rollIndex];
         }
         return score;
