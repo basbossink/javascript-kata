@@ -44,5 +44,15 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       rollMany(0, 17);
       expect(game.score()).toBe(16);
     });
+    it('two balls that sum to ten are not a spare when they are in different frames',
+      function() {
+        game.roll(3);
+        game.roll(6);
+        game.roll(4);
+        game.roll(4);
+        rollMany(0, 16);
+        expect(game.score()).toBe(17);
+      }
+    );
   });
 }());
