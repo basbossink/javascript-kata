@@ -18,24 +18,34 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   'use strict';
 
   exports.newGame = function() {
-    var rolls = [];
+    var NumberOfPinsInAGame = 10,
+      NumberOfFramesInAGame = 10,
+      rolls = [],
+      isStrike = function(rollIndex) {
+        return rolls[rollIndex] === NumberOfPinsInAGame;
+      },
+      isSpare = function(rollIndex) {
+        return sumConsecutiveBalls(rollIndex) === NumberOfPinsInAGame;
+      },
+      sumConsecutiveBalls = function(rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1];
+      },
+      frameScore = function(rollIndex) {
+        return isStrike(rollIndex) ?
+          NumberOfPinsInAGame + sumConsecutiveBalls(rollIndex + 1) :
+          isSpare(rollIndex) ?
+            NumberOfPinsInAGame + rolls[rollIndex + 2] :
+            sumConsecutiveBalls(rollIndex);
+      };
     return {
       roll: function(pins) {
         rolls.push(pins);
       },
       score: function() {
         var score = 0, rollIndex = 0, frameIndex = 0;
-        for(; frameIndex < 10; frameIndex += 1) {
-          if(rolls[rollIndex] === 10) {
-            score += 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2];
-          } else {
-            if(rolls[rollIndex] + rolls[rollIndex + 1] === 10) {
-              score += 10 + rolls[rollIndex + 2];
-            } else {
-              score += rolls[rollIndex] + rolls[rollIndex + 1];
-            }
-          }
-          rollIndex += rolls[rollIndex] === 10 ? 1 : 2;
+        for(; frameIndex < NumberOfFramesInAGame; frameIndex += 1) {
+          score += frameScore(rollIndex);
+          rollIndex += isStrike(rollIndex) ? 1 : 2;
         }
         return score;
       }
