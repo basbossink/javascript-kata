@@ -21,8 +21,8 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
   describe('When scoring a game of bowling', function() {
     var game,
     rollMany = function(pins, numberOfThrows) {
-      var i = 0;
-      for(; i < numberOfThrows; i += 1) {
+      var rollIndex = 0;
+      for(; rollIndex < numberOfThrows; rollIndex += 1) {
         game.roll(pins);
       }
     };
@@ -38,18 +38,16 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       expect(game.score()).toBe(20);
     });
     it('a spare should result in the next ball being counted as a bonus', function() {
-      game.roll(4);
+      rollMany(5,2);
       game.roll(6);
-      game.roll(3);
       rollMany(0, 17);
-      expect(game.score()).toBe(16);
+      expect(game.score()).toBe(22);
     });
     it('two balls that sum to ten are not a spare when they are in different frames',
       function() {
         game.roll(3);
         game.roll(6);
-        game.roll(4);
-        game.roll(4);
+        rollMany(4,2);
         rollMany(0, 16);
         expect(game.score()).toBe(17);
       }
