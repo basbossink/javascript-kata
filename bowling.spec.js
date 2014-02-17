@@ -52,5 +52,12 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
         expect(game.score()).toBe(17);
       }
     );
+    it('a strike should result in the next two balls being counted as a bonus', function() {
+      game.roll(10);
+      game.roll(6);
+      game.roll(2);
+      rollMany(0, 16);
+      expect(game.score()).toBe(26);
+    });
   });
 }());

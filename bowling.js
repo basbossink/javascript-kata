@@ -26,12 +26,16 @@ along with javascript-kata.  If not, see <http://www.gnu.org/licenses/>.
       score: function() {
         var score = 0, rollIndex = 0, frameIndex = 0;
         for(; frameIndex < 10; frameIndex += 1) {
-          if(rolls[rollIndex] + rolls[rollIndex + 1] === 10) {
-            score += 10 + rolls[rollIndex + 2];
+          if(rolls[rollIndex] === 10) {
+            score += 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2];
           } else {
-            score += rolls[rollIndex] + rolls[rollIndex + 1];
+            if(rolls[rollIndex] + rolls[rollIndex + 1] === 10) {
+              score += 10 + rolls[rollIndex + 2];
+            } else {
+              score += rolls[rollIndex] + rolls[rollIndex + 1];
+            }
           }
-          rollIndex += 2;
+          rollIndex += rolls[rollIndex] === 10 ? 1 : 2;
         }
         return score;
       }
